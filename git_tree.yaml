@@ -1,0 +1,13 @@
+root: .
+ignore:
+  - '.dart_tool/**'
+  - 'build/**'
+  - '**/*.g.dart'
+  - '.git/**'
+  - '.idea/**'
+output: project-tree.txt
+tree_output: project-tree.txt     # for the `tree` command
+deps_output: dependencies.txt     # for the `deps` command
+manifest: project-tree.txt
+format: ascii
+indent: 2

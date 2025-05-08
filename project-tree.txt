@@ -1,0 +1,11 @@
+lib/
+ ├── main.dart
+ ├── game/
+ │    └── checkers_game.dart
+ ├── models/
+ │    ├── piece.dart
+ │    └── move.dart
+ ├── ai/
+ │    └── ai_player.dart
+ └── utils/
+      └── board_utils.dart
