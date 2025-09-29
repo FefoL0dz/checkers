@@ -34,6 +34,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_riverpod: ^2.5.1
+  auto_route: ^7.8.4
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +45,8 @@ dev_dependencies:
     git:
       url: https://github.com/FefoL0dz/project_tree_cli.git
       ref: main
+  build_runner: ^2.4.12
+  auto_route_generator: ^7.8.4
     # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
