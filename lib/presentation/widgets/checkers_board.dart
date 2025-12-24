@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../../models/piece.dart';
+import '../../settings/settings_models.dart';
+import '../../settings/settings_scope.dart';
 import '../../utils/board_utils.dart';
 
 class CheckersBoard extends StatelessWidget {
@@ -21,6 +23,9 @@ class CheckersBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settings = SettingsScope.of(context);
+    final boardTheme = settings.boardThemeData;
+    final pieceTheme = settings.pieceThemeData;
     return AspectRatio(
       aspectRatio: 1,
       child: GridView.builder(
@@ -40,7 +45,7 @@ class CheckersBoard extends StatelessWidget {
             onTap: () => onSquareTap(row, col),
             child: Container(
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF6D4C41) : const Color(0xFFFFF8E1),
+                color: isDark ? boardTheme.darkSquare : boardTheme.lightSquare,
                 border: Border.all(color: Colors.black12),
               ),
               child: Center(
@@ -48,6 +53,7 @@ class CheckersBoard extends StatelessWidget {
                   piece: piece,
                   isSelected: isSelected,
                   isTarget: isTarget,
+                  pieceTheme: pieceTheme,
                 ),
               ),
             ),
@@ -63,11 +69,13 @@ class _PieceView extends StatelessWidget {
     required this.piece,
     required this.isSelected,
     required this.isTarget,
+    required this.pieceTheme,
   });
 
   final Piece? piece;
   final bool isSelected;
   final bool isTarget;
+  final PieceThemeData pieceTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +94,8 @@ class _PieceView extends StatelessWidget {
       );
     }
     final baseColor = piece!.color == PieceColor.red
-        ? const Color(0xFFB71C1C)
-        : const Color(0xFF263238);
+        ? pieceTheme.redColor
+        : pieceTheme.blackColor;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       width: 42,
@@ -109,10 +117,10 @@ class _PieceView extends StatelessWidget {
         ],
       ),
       child: piece!.isKing
-          ? const Center(
+          ? Center(
               child: Icon(
                 Icons.workspace_premium,
-                color: Colors.amber,
+                color: pieceTheme.kingAccent,
                 size: 20,
               ),
             )

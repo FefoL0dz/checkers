@@ -7,6 +7,7 @@ import '../../app.dart';
 import '../../game/checkers_game.dart';
 import '../../models/move.dart';
 import '../../models/piece.dart';
+import '../../settings/settings_scope.dart';
 import '../widgets/checkers_board.dart';
 
 class GameScreen extends StatefulWidget {
@@ -121,6 +122,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final settings = SettingsScope.of(context);
+    final pieceTheme = settings.pieceThemeData;
     final board = _game.board;
     final remainingRed = _countPieces(board, PieceColor.red);
     final remainingBlack = _countPieces(board, PieceColor.black);
@@ -151,12 +154,12 @@ class _GameScreenState extends State<GameScreen> {
                   _PieceCountChip(
                     label: 'Red',
                     count: remainingRed,
-                    color: const Color(0xFFB71C1C),
+                    color: pieceTheme.redColor,
                   ),
                   _PieceCountChip(
                     label: 'Black',
                     count: remainingBlack,
-                    color: const Color(0xFF263238),
+                    color: pieceTheme.blackColor,
                   ),
                 ],
               ),
